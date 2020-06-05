@@ -150,11 +150,6 @@ func (s *Service) InstanceCreate(clusterName string, machine *clusterv1.Machine,
 			port = portList[0]
 		}
 
-		_, err = attributestags.ReplaceAll(s.networkClient, "ports", port.ID, attributestags.ReplaceAllOpts{
-			Tags: machineTags}).Extract()
-		if err != nil {
-			return nil, fmt.Errorf("tagging port for server err: %v", err)
-		}
 		portsList = append(portsList, servers.Network{
 			Port: port.ID,
 		})
